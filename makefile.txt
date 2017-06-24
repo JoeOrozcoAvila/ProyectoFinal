@@ -1,0 +1,19 @@
+build:  pre compile asm linker
+
+pre:
+        cpp hydroctrl.c > hydroctrl.i
+
+compile:
+        gcc -S hydroctrl.i
+
+asm:
+        as -o hydroctrl.o hydroctrl.s
+
+linker:
+        gcc -Wall -pthread -o hydroctrl.exe hydroctrl.o -lpigpio -lrt
+
+run:
+        ./hydroctrl.exe
+
+clean:
+        rm hydroctrl.i hydroctrl.s hydroctrl.o
